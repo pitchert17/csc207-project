@@ -140,6 +140,8 @@ iterator = 0;
     while (scanner.hasNextLine())
       {
 
+        linebreaker = new Scanner(scanner.next().substring(4));
+        
       }// while
 
   }// Main

@@ -136,12 +136,15 @@ public class IO
         collegeInitials[iterator] = linebreaker.next();
         iterator++;
       }// while
-iterator = 0; 
+    iterator = 0;
     while (scanner.hasNextLine())
       {
 
         linebreaker = new Scanner(scanner.next().substring(4));
-        
+        while (linebreaker.hasNext())
+          {
+
+          }// while
       }// while
 
   }// Main

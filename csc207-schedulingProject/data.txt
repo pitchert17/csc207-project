@@ -1,0 +1,71 @@
+//Begin
+College: Beloit College
+Initials: BC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Cornell College
+Initials: CC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Grinnell College
+Initials: GC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Illinois College
+Initials: IC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Knox College
+Initials: KC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Lake Forest College
+Initials: LFC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Lawrence College
+Initials: LU
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Monmouth College
+Initials: MC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: Ripon College
+Initials: RC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+//Begin
+College: St. Norbert College
+Initials: SNC
+Available: 01/12/14 02/12/12 03/12/16  
+Must: 13/2/15 23/6/17 12/12/16
+Cant: 12/2/16 01/2/14 01/2/14
+//End
+

@@ -1,5 +1,10 @@
 package taojava;
-
+/**
+ * The Schedule interface
+ * @author Ameer Shujjah
+ * @author Tommy Pitcher
+ * @author Yazan Kittaneh
+ */
 public interface Schedule
 {
 
@@ -11,7 +16,7 @@ public interface Schedule
    *   schools is a valid file name
    */
   public void schoolsInput(String schools, String location);
-  
+
   /**
    * Uses the information extracted in fileInput to create a schedule
    */
@@ -19,7 +24,8 @@ public interface Schedule
 
   /**
    * Prints the schedule created by algorithm()
+   * @param output, is the name of the output file with the schedule.
    */
-  public void output();
-  
+  public void output(String output);
+
 }//Interface Schedule

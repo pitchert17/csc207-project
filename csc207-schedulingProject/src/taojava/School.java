@@ -28,7 +28,7 @@ public class School
   /**
    * An Array of Location objects with the distances
    */
-  Location[] distances;
+  Location[] distances = new Location[10];;
 
   /**
    * An Array list with the dates the school has considered
@@ -96,5 +96,12 @@ public class School
       {
         pen.println("Date = " + this.dates.get(i).toString());
       }// for, all the dates
+    for(int i = 0; i < 10; i++)
+      {
+        pen.print(" " + distances[i].schoolInitials);
+        pen.println();
+        pen.print(" " + distances[i].distance);
+      }
+    pen.println();
   }// print(PrintWriter)
 }// Class School

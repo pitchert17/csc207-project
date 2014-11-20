@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-public class IO
+public class TempTest
 {
 
   public static void date(String str, int priority, ArrayList<Dates> dates)
@@ -49,10 +49,8 @@ public class IO
     PrintWriter pen = new PrintWriter(System.out, true);
     //An Array of Schools
     School[] colleges = new School[10];
+    //A temp array of Dates
     ArrayList<Dates> dateTmp = new ArrayList<Dates>();
-    //SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-    //Date d = sdf.parse("12-12-2012");
-    //System.out.println(d.toString());
     //Using a Scanner to read the file
     FileInputStream fis = new FileInputStream("data.txt");
     Scanner scanner = new Scanner(fis);
@@ -114,7 +112,7 @@ public class IO
             //System.out.println("Now Update our objects with the new Information.");
             colleges[iterator].setDates((ArrayList<Dates>) dateTmp.clone());
             dateTmp.clear();
-            colleges[iterator].print(pen);
+            //colleges[iterator].print(pen);
             pen.println();
             iterator++;
           }// else if, the end of a College
@@ -128,24 +126,44 @@ public class IO
     scanner = new Scanner(fil);
 
     String[] collegeInitials = new String[10];
+    //get all the initials and store them in an array
+    scanner.nextLine();
     line = scanner.nextLine();
     iterator = 0;
     Scanner linebreaker = new Scanner(line);
+
     while (linebreaker.hasNext())
       {
         collegeInitials[iterator] = linebreaker.next();
         iterator++;
-      }// while
+      }// while, there are more initials
+
+    for (int k = 0; k < 10; k++)
+      {
+        pen.print(collegeInitials[k]);
+      }
+    pen.println();
     iterator = 0;
+    int secondIterator;
+    //loop over all the other lines
     while (scanner.hasNextLine())
       {
-
-        linebreaker = new Scanner(scanner.next().substring(4));
+        secondIterator = 0;
+        linebreaker = new Scanner(scanner.nextLine().substring(4));
         while (linebreaker.hasNext())
           {
+            colleges[iterator].distances[secondIterator] =
+                new Location(Integer.parseInt(linebreaker.next()),
+                             collegeInitials[secondIterator]);
+            secondIterator++;
+          }// while, there are more distances in the line
+        iterator++;
+      }// while, there are more lines
 
-          }// while
-      }// while
-
+    scanner.close();
+    for (int j = 0; j < 10; j++)
+      {
+        colleges[j].print(pen);
+      }// for
   }// Main
 } //Class IO

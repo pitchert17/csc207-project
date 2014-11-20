@@ -22,4 +22,20 @@ public class Location
    */
   String schoolInitials;
   
+  // +--------------+----------------------------------------------------
+  // | Constructors |
+  // +--------------+
+  
+  /**
+   * Create a Location Object
+   * @param _distance, the distance between the school
+   * @param initials, the initials of the school
+   */
+  public Location(int _distance, String initials)
+  {
+    this.distance = _distance;
+    this.schoolInitials = initials;
+  }//Location(int, String)
+  
+  
 }// Class Location

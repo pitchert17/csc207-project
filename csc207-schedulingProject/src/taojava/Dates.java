@@ -94,7 +94,7 @@ public class Dates
     this.day =
         ((((((((this.year / 4) + (this.year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
   }// Dates(int, int, int ,int)
-  
+
   // +--------+----------------------------------------------------------
   // |Methods |
   // +--------+
@@ -162,4 +162,14 @@ public class Dates
     return dayNames[this.day] + " " + this.date + " "
            + this.monthNames[this.month - 1] + " " + (this.year + 2000);
   }// toString()
+
+ 
+  public boolean equals(Dates other)
+  {
+    if (this.date == other.date && this.month == other.month
+        && this.year == other.year && this.priority == other.priority)
+      return true;
+    return false;
+  }// equals(Dates)
+
 }// Class Dates

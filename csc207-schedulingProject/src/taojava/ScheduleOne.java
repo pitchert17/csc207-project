@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 /**
@@ -22,11 +24,35 @@ public class ScheduleOne
    * An Array of School Objects to contain information
    * about all the colleges
    */
-  School[] colleges = new School[10];
+  ArrayList<School> colleges = new ArrayList<School>();
 
   // +---------------+---------------------------------------------------
   // |Helper Methods |
   // +---------------+
+
+  /**
+   * Prints the added dates of all the schools, as a test
+   */
+  public void printDates(PrintWriter pen)
+  {
+    School tmp;
+    int size;
+    for (int i = 0; i < colleges.size(); i++)
+      {
+        pen.println("-----------------------");
+        tmp = colleges.get(i);
+        pen.println(tmp.name);
+        size = tmp.dates.size();
+        pen.println("Total Dates =" + size);
+        for (int j = 0; j < size; j++)
+          {
+            pen.print(tmp.dates.get(j));
+            pen.print(" Priority = " + tmp.dates.get(j).priority);
+            pen.println();
+          }// for all the dates
+        pen.println("-----------------------");
+      } // for all the colleges
+  }// printDates()
 
   /**
    * Converts a date string into its components and adds it to the ArrayList
@@ -64,6 +90,26 @@ public class ScheduleOne
     dates.add(new Dates(date[0], date[1], date[2], priority));
   } //date(String, int)
 
+  /**
+   * Set up a match on a specified date for the two schools
+   * 
+   * @param school1
+   *    First school
+   * @param school2
+   *    Second school
+   * @param date
+   *    Date we want to set the match for
+   */
+  public void setMatch(School school1, School school2, Dates date,
+                       boolean location)
+  {
+    History history1 = new History(school2, location, date);
+    History history2 = new History(school1, !location, date);
+
+    school1.history.add(history1);
+    school2.history.add(history2);
+  } //setMatch(School school1, School school2, Dates date)
+
   // +--------+----------------------------------------------------------
   // |Methods |
   // +--------+
@@ -97,6 +143,7 @@ public class ScheduleOne
     String Initials = "";
     String line;
     int iterator = 0;
+    School tmpCollege = null;
     while (scanner.hasNextLine())
       {
         line = scanner.nextLine();
@@ -105,12 +152,12 @@ public class ScheduleOne
         if (line.contains("College:"))
           {
             College = line.substring(9);
-            colleges[iterator] = new School(College);
+            tmpCollege = new School(College);
           }// if College name
         if (line.contains("Initials:"))
           {
             Initials = line.substring(9);
-            colleges[iterator].setInitials(Initials);
+            tmpCollege.setInitials(Initials);
           }// if College's Initials
         //Add all the dates
         else if (line.contains("Available:"))
@@ -149,9 +196,9 @@ public class ScheduleOne
         else if (line.compareTo("//End") == 0)
           {
             //Add the dates to the School Object
-            colleges[iterator].setDates((ArrayList<Dates>) dateTmp.clone());
+            tmpCollege.setDates((ArrayList<Dates>) dateTmp.clone());
+            colleges.add(tmpCollege);
             dateTmp.clear();
-            iterator++;
           }// else if, the end of a College
       }// while, there are unseen lines in the data 
     scanner.close();
@@ -194,7 +241,7 @@ public class ScheduleOne
         //college initials
         while (linebreaker.hasNext())
           {
-            colleges[iterator].distances[secondIterator] =
+            colleges.get(iterator).distances[secondIterator] =
                 new Location(Integer.parseInt(linebreaker.next()),
                              collegeInitials[secondIterator]);
             secondIterator++;
@@ -211,7 +258,107 @@ public class ScheduleOne
    */
   public void algorithm()
   {
-    // stub
+    //Initialize Variables
+    int teamsSize = 9;
+    int halfSize = 5;
+    Random rand = new Random();
+    int random = rand.nextInt(10);
+    School first = colleges.get(random);
+    colleges.remove(random);
+    boolean home = true;
+    int checkDate = 0;
+    int checkOtherDate = 0;
+    School collegeOne;
+    School collegeTwo = null;
+    Dates tmpDate = null;
+    boolean check = true;
+    int len;
+    int len2;
+
+    // For all the 18 days
+    for (int day = 0; day < 18; day++)
+      {
+        // For the second round of double round robin
+        if (day == 9)
+          home = false;
+
+        System.out.println("Day {" + (day + 1) + "}");
+
+        int teamIndex = day % teamsSize;
+        collegeTwo = colleges.get(teamIndex);
+        // For the pivot team
+        System.out.println(collegeTwo.Initials + " vs " + first.Initials);
+
+        len = first.dates.size();
+        for (checkDate = 0; checkDate < len && check != false; checkDate++)
+          {
+            tmpDate = first.dates.get(checkDate);
+            len2 = collegeTwo.dates.size();
+            for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
+              {
+                if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate))
+                  {
+                    check = false;
+                    break;
+                  }// if dates match;
+              } // for all the dates in the other school
+          }// for all the dates in school 1
+        checkDate--;
+        //System.out.println("CheckDate = " + checkDate + "CheckOtherDate = "
+          //                 + checkOtherDate);
+        if (check == false)
+          {
+            setMatch(first, collegeTwo, tmpDate, home);
+            collegeTwo.dates.remove(checkOtherDate);
+            first.dates.remove(checkDate);
+            check = true;
+          } //if, we found common dates
+        else
+          {
+            //Dates do not Match
+            System.out.println("Dates do not Match");
+          } //else, no common dates found
+
+        //For the rest of the teams
+        for (int idx = 1; idx < halfSize; idx++)
+          {
+            int firstTeam = (day + idx) % teamsSize;
+            int secondTeam = (day + teamsSize - idx) % teamsSize;
+            // System.out.println("firstTeam Index" + firstTeam + " " + "secondTeam Index" + secondTeam);
+            System.out.println(colleges.get(firstTeam).Initials + " vs "
+                               + colleges.get(secondTeam).Initials);
+
+            collegeOne = colleges.get(firstTeam);
+            collegeTwo = colleges.get(secondTeam);
+            len = collegeOne.dates.size();
+            for (checkDate = 0; checkDate < len && check != false; checkDate++)
+              {
+                tmpDate = collegeOne.dates.get(checkDate);
+                len2 = collegeTwo.dates.size();
+                for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
+                  {
+                    if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate))
+                      {
+                        check = false;
+                        break;
+                      }// if dates match;
+                  } // for all the dates in the other school  
+              }// for all the dates in school 1
+            checkDate--;
+            if (check == false)
+              {
+                setMatch(collegeOne, collegeTwo, tmpDate, home);
+                collegeTwo.dates.remove(checkOtherDate);
+                collegeOne.dates.remove(checkDate);
+                check = true;
+              } //if, we found common dates
+            else
+              {
+                System.out.println("Dates do not Match-for Second Half");
+              } //else, no common dates found
+          }// for each round
+      }// for, double round robin
+    colleges.add(first);
   }// algorithm()
 
   @Override
@@ -239,5 +386,58 @@ public class ScheduleOne
               }// for all the history objects
           }// for all the colleges
     */
+
+    /*
+    School             Date         Location
+    ___________________________________________________
+    School 3(S3)       day          place
+    School 5(S5)       day          place
+    School 2(S2)       day          place
+    School 7(S3)       day          place
+    ___________________________________________________
+    ...
+    */
+    School tmp;
+    PrintWriter pen = new PrintWriter(System.out, true);
+
+    //File file = new File("example.txt");
+    //PrintWriter pen = new PrintWriter(new FileWriter(file));
+
+    for (int i = 0; i < colleges.size(); i++) //for every school
+      {
+        tmp = colleges.get(i);
+        String home;
+        //print header
+        pen.printf("%20s%40s%15s\n", tmp.name, "Date", "Location");
+        pen.println();
+        pen.println("Total Matches = " + tmp.history.size());
+        for (History hist : tmp.history)
+          {
+            if (hist.home == true)
+              home = "home";
+            else
+              home = "away";
+            pen.printf("%20s%40s%15s", hist.opponent.name, hist.played, home);
+            pen.println();
+          }// all the items in History
+        pen.println();
+        pen.println();
+        pen.println();
+        pen.println();
+      }// for every school
+    pen.close();
+
   }// output()
+
+  public static void main(String[] args)
+  {
+    PrintWriter pen = new PrintWriter(System.out, true);
+    ScheduleOne test = new ScheduleOne();
+    test.schoolsInput("data.txt", "distance.txt");
+    test.printDates(pen);
+    test.algorithm();
+    test.output("Doesn't Matter");
+
+  }// main
+
 }// Class ScheduleOne

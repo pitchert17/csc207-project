@@ -24,7 +24,7 @@ public class School
    * The initials of the School
    */
   String Initials;
-  
+
   /**
    * An Array of Location objects with the distances
    */
@@ -33,12 +33,12 @@ public class School
   /**
    * An Array list with the dates the school has considered
    */
-  ArrayList<Dates> dates;
+  ArrayList<Dates> dates = new ArrayList<Dates>();;
 
   /**
    * An Array List with the history of the schools matches
    */
-  ArrayList<History> history;
+  ArrayList<History> history = new ArrayList<History>();
 
   // +--------------+----------------------------------------------------
   // | Constructors |
@@ -50,7 +50,7 @@ public class School
   public School(String college)
   {
     this.name = college;
-   }// School(String)
+  }// School(String)
 
   /**
    * Constructs a new School Object
@@ -75,7 +75,7 @@ public class School
   {
     this.Initials = _Initials;
   }// setInitials(String)
-  
+
   /**
    * Sets the dates field of the Object with the input times
    * @param times, an ArrayList<Dates> object
@@ -96,7 +96,7 @@ public class School
       {
         pen.println("Date = " + this.dates.get(i).toString());
       }// for, all the dates
-    for(int i = 0; i < 10; i++)
+    for (int i = 0; i < 10; i++)
       {
         pen.print(" " + distances[i].schoolInitials);
         pen.println();

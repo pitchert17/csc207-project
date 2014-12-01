@@ -113,14 +113,35 @@ public class ScheduleOne
   } //setMatch(School school1, School school2, Dates date)
 
   /**
-   * Uses the basic schedule and randomly permutes it until all 
-   * the desired restrictions are fulfilled. 
+   * Check for each school if the distance restrictions are fulfilled.
+   * @param college, the input School
+   * @return true, if all fulfilled, false if not.
    */
-  public boolean setRestrictions()
+  public boolean checkDistance(School college)
+  {
+    for (History hist : college.history)
+      {     
+       Dates date = hist.played;
+       School opponent = hist.opponent;
+       if (date.date == 2 || date.date == 2)
+         {
+           
+         }// if it is a Tuesday or a Wednesday
+       
+      }// for all the history objects
+    return true;
+  }// checkDistance
+  
+  
+  
+  /**
+   * Uses the basic schedule and checks whether all the
+   * restrictions are fulfilled.
+   */
+  public boolean checkRestrictions()
   {
     // Check all the distance restrictions
-    
-    return false;     
+      return true;     
   }// setRestrictions()
 
   /**

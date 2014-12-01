@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -109,6 +111,45 @@ public class ScheduleOne
     school1.history.add(history1);
     school2.history.add(history2);
   } //setMatch(School school1, School school2, Dates date)
+
+  /**
+   * Uses the basic schedule and randomly permutes it until all 
+   * the desired restrictions are fulfilled. 
+   */
+  public boolean setRestrictions()
+  {
+    // Check all the distance restrictions
+    
+    return false;     
+  }// setRestrictions()
+
+  /**
+   * Shuffle an ArrayList using Java's in-built Collections
+   * @param list
+   */
+  public <T> void shuffle(ArrayList<T> list)
+  {
+    Collections.shuffle(list);
+  }// shuffle(ArrayList<T>)
+  
+  // Citation : http://stackoverflow.com/questions/18441846/how-sort-a-arraylist-in-java
+  /**
+   * Sort an ArrayList<History>
+   * @param list, the ArrayList with the history objects
+   */
+  public void sort(ArrayList<History> list)
+  {
+    Collections.sort(list, new Comparator<History>()
+                       {
+                         // Anonymous Function
+                         @Override
+                         public int compare(History hist, History other)
+                         {
+
+                           return other.played.compareTo(hist.played);
+                         }// compare(History, History)
+                       }); 
+  }// sort(ArrayList<History>, Comparator<History>)
 
   // +--------+----------------------------------------------------------
   // |Methods |
@@ -274,7 +315,7 @@ public class ScheduleOne
     boolean check = true;
     int len;
     int len2;
-
+    shuffle(colleges);
     // For all the 18 days
     for (int day = 0; day < 18; day++)
       {
@@ -305,7 +346,7 @@ public class ScheduleOne
           }// for all the dates in school 1
         checkDate--;
         //System.out.println("CheckDate = " + checkDate + "CheckOtherDate = "
-          //                 + checkOtherDate);
+        //                 + checkOtherDate);
         if (check == false)
           {
             setMatch(first, collegeTwo, tmpDate, home);
@@ -411,6 +452,7 @@ public class ScheduleOne
         pen.printf("%20s%40s%15s\n", tmp.name, "Date", "Location");
         pen.println();
         pen.println("Total Matches = " + tmp.history.size());
+        sort(tmp.history);
         for (History hist : tmp.history)
           {
             if (hist.home == true)
@@ -434,7 +476,7 @@ public class ScheduleOne
     PrintWriter pen = new PrintWriter(System.out, true);
     ScheduleOne test = new ScheduleOne();
     test.schoolsInput("data.txt", "distance.txt");
-    test.printDates(pen);
+    //test.printDates(pen);
     test.algorithm();
     test.output("Doesn't Matter");
 

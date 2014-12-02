@@ -53,11 +53,15 @@ public class Dates
   int[] months = new int[] { 0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5 };
 
   /**
-   * THe names of the days in a week
+   * The names of the days in a week
    */
   String[] dayNames = new String[] { "Sunday", "Monday", "Tuesday",
                                     "Wednesday", "Thursday", "Friday",
                                     "Saturday" };
+  /**
+   * A boolean which tells us if the date has been used.
+   */
+  boolean used = false;
 
   // +--------------+----------------------------------------------------
   // | Constructors |
@@ -154,6 +158,22 @@ public class Dates
   }// compareTo(Dates)
 
   /**
+   * Change the used field to true.
+   */
+  public void isUsed()
+  {
+    this.used = true;
+  }// 
+
+  /**
+   * Change the used field to false;
+   */
+  public void resetUsed()
+  {
+    this.used = false;
+  }// resetUsed()
+  
+  /**
    * Converts the dates object to a String
    * @return a String,
    */
@@ -163,7 +183,6 @@ public class Dates
            + this.monthNames[this.month - 1] + " " + (this.year + 2000);
   }// toString()
 
- 
   public boolean equals(Dates other)
   {
     if (this.date == other.date && this.month == other.month

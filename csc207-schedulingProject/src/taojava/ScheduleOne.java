@@ -32,6 +32,26 @@ public class ScheduleOne
   // |Helper Methods |
   // +---------------+
 
+  public void printInitials(PrintWriter pen)
+  {
+
+    for (School college : colleges)
+      {
+        pen.println("College Name = " + college.name + "| Initials "
+                    + college.Initials);
+        for (int i = 0; i < 10; i++)
+          {
+            pen.print(college.distances[i].schoolInitials + " ");
+          }// all the Location objects initials
+        pen.println();
+        for (int i = 0; i < 10; i++)
+          {
+            pen.print(college.distances[i].distance + " ");
+          }// all the Location objects, distances
+        pen.println();
+      }// for all the colleges
+  }// printInitials(PrintWriter)
+
   /**
    * Prints the added dates of all the schools, as a test
    */
@@ -120,28 +140,49 @@ public class ScheduleOne
   public boolean checkDistance(School college)
   {
     for (History hist : college.history)
-      {     
-       Dates date = hist.played;
-       School opponent = hist.opponent;
-       if (date.date == 2 || date.date == 2)
-         {
-           
-         }// if it is a Tuesday or a Wednesday
-       
+      {
+        Dates date = hist.played;
+        School opponent = hist.opponent;
+        String initials = opponent.Initials;
+        int len = college.distances.length;
+        int iterator = 0;
+        int day = date.day;
+        if (day == 2 || day == 3)
+          {
+            while (iterator < len)
+              {
+                // find the correct Location object
+                if (college.distances[iterator].schoolInitials.equals(initials))
+                  break;
+                iterator++;
+              }// while, iterator is within the length of the array
+            // Check if the distance works
+            /*System.out.println("college = " + college.name + " opponent = "
+                               + college.distances[iterator].schoolInitials
+                               + " distance ="
+                               + college.distances[iterator].distance);*/
+            if (college.distances[iterator].distance > 270)
+              return false;
+          }// if it is a Tuesday or a Wednesday
       }// for all the history objects
     return true;
   }// checkDistance
-  
-  
-  
+
   /**
    * Uses the basic schedule and checks whether all the
    * restrictions are fulfilled.
    */
   public boolean checkRestrictions()
   {
-    // Check all the distance restrictions
-      return true;     
+
+    for (School college : colleges)
+      {
+        if (checkDistance(college) == false)
+          {
+            return false;
+          }
+      }// For all the colleges, check the distance restrictions on weekdays
+    return true;
   }// setRestrictions()
 
   /**
@@ -152,7 +193,7 @@ public class ScheduleOne
   {
     Collections.shuffle(list);
   }// shuffle(ArrayList<T>)
-  
+
   // Citation : http://stackoverflow.com/questions/18441846/how-sort-a-arraylist-in-java
   /**
    * Sort an ArrayList<History>
@@ -169,12 +210,106 @@ public class ScheduleOne
 
                            return other.played.compareTo(hist.played);
                          }// compare(History, History)
-                       }); 
+                       });
   }// sort(ArrayList<History>, Comparator<History>)
 
-  // +--------+----------------------------------------------------------
-  // |Methods |
-  // +--------+
+  /**
+   * Reset all the dates used field to false;
+   */
+  public void resetDates()
+  {
+    for (School college : colleges)
+      {
+        for (Dates date : college.dates)
+          {
+            date.resetUsed();
+          }// for all the dates
+        college.history.clear();
+      }// for all the colleges
+  }// resetDates
+
+  /**
+   * Checks if a team plays a home back-to-back
+   * and a away back-to-back
+   * 
+   * @param school
+   * @return
+   *    true: Team has played both home and away back-to-backs
+   *    false: Team has not played one or both home and away back-to-backs
+   */
+  public boolean checkBacktoBack(School school)
+  {
+    //Declarations
+    int iter = 0;
+    boolean location = false;
+    boolean result = false;
+    int secondCheck = 0;
+    //Declarations
+
+    for (History hist : school.history)
+      {
+        if (hist.played.day == 5)
+          {
+            iter++;
+            location = hist.home;
+          }//If the match is a friday
+        if (hist.played.day == 6) //if we find saturday
+          {
+            if (hist.home == location && iter != 0)
+              {
+                iter = 0;
+                secondCheck++;
+                location = !location;
+                result = true;
+              } //if the Saturday follows a Friday and is at the same location
+            else
+              //else, the saturday did not pass the test
+              return false;
+          }//If the match is a saturday
+      } //for each history object in the school's history ArrayList
+    if (secondCheck == 2)
+      {
+        return result;
+      } //if there were two back-to-backs that were checked
+    return false;
+  } // checkBacktoBack(School school)
+
+  /**
+   * Generate the schedule
+   */
+  public void generateSchedule()
+  {
+    boolean work = false;
+    //System.out.println("Fuck gotta do it again");
+    resetDates();
+    algorithm();
+    //System.out.println("Done with the algorithm!");
+    for (int i = 0; i < 60000; i++)
+      {
+        if (checkRestrictions())
+          {
+            work = true;
+            break;
+          }//
+        else
+          {
+            resetDates();
+            algorithm();
+          }
+      }
+    if (!work)
+      {
+        System.out.println("Doesnt Work");
+      }// if
+    else
+      {
+        System.out.println("It works!");
+      }
+
+  }// generateSchedule
+   // +--------+----------------------------------------------------------
+   // |Methods |
+   // +--------+
 
   @Override
   /**
@@ -200,7 +335,7 @@ public class ScheduleOne
       }//catch
     Scanner scanner = new Scanner(fis);
 
-    //Initialize the necessary temp variables
+    //Initialize the necessary temporary variables
     String College = "";
     String Initials = "";
     String line;
@@ -218,7 +353,7 @@ public class ScheduleOne
           }// if College name
         if (line.contains("Initials:"))
           {
-            Initials = line.substring(9);
+            Initials = line.substring(10);
             tmpCollege.setInitials(Initials);
           }// if College's Initials
         //Add all the dates
@@ -312,6 +447,7 @@ public class ScheduleOne
       }// while, there are more lines
 
     scanner.close();
+
   }// fileInput(String, String)
 
   @Override
@@ -344,12 +480,12 @@ public class ScheduleOne
         if (day == 9)
           home = false;
 
-        System.out.println("Day {" + (day + 1) + "}");
+        // System.out.println("Day {" + (day + 1) + "}");
 
         int teamIndex = day % teamsSize;
         collegeTwo = colleges.get(teamIndex);
         // For the pivot team
-        System.out.println(collegeTwo.Initials + " vs " + first.Initials);
+        //System.out.println(collegeTwo.Initials + " vs " + first.Initials);
 
         len = first.dates.size();
         for (checkDate = 0; checkDate < len && check != false; checkDate++)
@@ -358,7 +494,9 @@ public class ScheduleOne
             len2 = collegeTwo.dates.size();
             for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
               {
-                if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate))
+                if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate)
+                    && !collegeTwo.dates.get(checkOtherDate).used
+                    && !tmpDate.used)
                   {
                     check = false;
                     break;
@@ -367,12 +505,12 @@ public class ScheduleOne
           }// for all the dates in school 1
         checkDate--;
         //System.out.println("CheckDate = " + checkDate + "CheckOtherDate = "
-        //                 + checkOtherDate);
+        //               + checkOtherDate);
         if (check == false)
           {
             setMatch(first, collegeTwo, tmpDate, home);
-            collegeTwo.dates.remove(checkOtherDate);
-            first.dates.remove(checkDate);
+            collegeTwo.dates.get(checkOtherDate).isUsed();
+            first.dates.get(checkDate).isUsed();
             check = true;
           } //if, we found common dates
         else
@@ -386,9 +524,9 @@ public class ScheduleOne
           {
             int firstTeam = (day + idx) % teamsSize;
             int secondTeam = (day + teamsSize - idx) % teamsSize;
-            // System.out.println("firstTeam Index" + firstTeam + " " + "secondTeam Index" + secondTeam);
-            System.out.println(colleges.get(firstTeam).Initials + " vs "
-                               + colleges.get(secondTeam).Initials);
+            //System.out.println("firstTeam Index" + firstTeam + " " + "secondTeam Index" + secondTeam);
+            // System.out.println(colleges.get(firstTeam).Initials + " vs "
+            //                  + colleges.get(secondTeam).Initials);
 
             collegeOne = colleges.get(firstTeam);
             collegeTwo = colleges.get(secondTeam);
@@ -399,7 +537,9 @@ public class ScheduleOne
                 len2 = collegeTwo.dates.size();
                 for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
                   {
-                    if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate))
+                    if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate)
+                        && !collegeTwo.dates.get(checkOtherDate).used
+                        && !tmpDate.used)
                       {
                         check = false;
                         break;
@@ -410,13 +550,13 @@ public class ScheduleOne
             if (check == false)
               {
                 setMatch(collegeOne, collegeTwo, tmpDate, home);
-                collegeTwo.dates.remove(checkOtherDate);
-                collegeOne.dates.remove(checkDate);
+                collegeTwo.dates.get(checkOtherDate).isUsed();
+                collegeOne.dates.get(checkDate).isUsed();
                 check = true;
               } //if, we found common dates
             else
               {
-                System.out.println("Dates do not Match-for Second Half");
+                // System.out.println("Dates do not Match-for Second Half");
               } //else, no common dates found
           }// for each round
       }// for, double round robin
@@ -496,9 +636,12 @@ public class ScheduleOne
   {
     PrintWriter pen = new PrintWriter(System.out, true);
     ScheduleOne test = new ScheduleOne();
+
     test.schoolsInput("data.txt", "distance.txt");
     //test.printDates(pen);
-    test.algorithm();
+    //test.algorithm();
+    test.generateSchedule();
+    //test.printInitials(pen);
     test.output("Doesn't Matter");
 
   }// main

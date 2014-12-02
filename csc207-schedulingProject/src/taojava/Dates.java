@@ -172,7 +172,7 @@ public class Dates
   {
     this.used = false;
   }// resetUsed()
-  
+
   /**
    * Converts the dates object to a String
    * @return a String,
@@ -186,7 +186,8 @@ public class Dates
   public boolean equals(Dates other)
   {
     if (this.date == other.date && this.month == other.month
-        && this.year == other.year && this.priority == other.priority)
+        && this.year == other.year && this.priority == other.priority
+        && this.used == other.used)
       return true;
     return false;
   }// equals(Dates)

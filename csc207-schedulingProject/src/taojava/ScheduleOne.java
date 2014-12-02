@@ -3,6 +3,7 @@ package taojava;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -31,7 +32,10 @@ public class ScheduleOne
   // +---------------+---------------------------------------------------
   // |Helper Methods |
   // +---------------+
-
+  /**
+   * Prints the Location Array of all the Colleges
+   * @param pen, a PrintWriter
+   */
   public void printInitials(PrintWriter pen)
   {
 
@@ -52,6 +56,16 @@ public class ScheduleOne
       }// for all the colleges
   }// printInitials(PrintWriter)
 
+  public boolean hasTueWed(ArrayList<Dates> array)
+  {
+    for (Dates date : array)
+      {
+        if (date.day == 2 || date.day == 3)
+          return true;
+      }// for, all the dates
+    return false;
+  }// hasTueWed()
+
   /**
    * Prints the added dates of all the schools, as a test
    */
@@ -70,6 +84,7 @@ public class ScheduleOne
           {
             pen.print(tmp.dates.get(j));
             pen.print(" Priority = " + tmp.dates.get(j).priority);
+            pen.print(" Day " + tmp.dates.get(j).day);
             pen.println();
           }// for all the dates
         pen.println("-----------------------");
@@ -214,7 +229,8 @@ public class ScheduleOne
   }// sort(ArrayList<History>, Comparator<History>)
 
   /**
-   * Reset all the dates used field to false;
+   * Reset all the dates used field to false, and empty
+   * the history ArrayList so we can run the algorithm again;
    */
   public void resetDates()
   {
@@ -275,36 +291,52 @@ public class ScheduleOne
   } // checkBacktoBack(School school)
 
   /**
+   * Get the distance between the two schools.
+   * @param college, school 1
+   * @param opponent, school 2
+   * @return an int, the distance between the two schools
+   */
+  public int getDistance(School college, School opponent)
+  {
+    int len = college.distances.length;
+    int i;
+    for (i = 0; i < len; i++)
+      {
+        if (college.distances[i].schoolInitials.equals(opponent.Initials))
+          break;
+      }// for all the Location Objects
+    return college.distances[i].distance;
+  }// getDistance(School, School)
+
+  /**
    * Generate the schedule
    */
   public void generateSchedule()
   {
     boolean work = false;
-    //System.out.println("Fuck gotta do it again");
     resetDates();
     algorithm();
-    //System.out.println("Done with the algorithm!");
     for (int i = 0; i < 60000; i++)
       {
         if (checkRestrictions())
           {
             work = true;
             break;
-          }//
+          }// the algorithm fulfills the restrictions
         else
           {
             resetDates();
             algorithm();
-          }
+          }// the algorithm fails the restrictions
       }
     if (!work)
       {
         System.out.println("Doesnt Work");
-      }// if
+      }// if, it does not work
     else
       {
         System.out.println("It works!");
-      }
+      }// it works
 
   }// generateSchedule
    // +--------+----------------------------------------------------------
@@ -445,17 +477,16 @@ public class ScheduleOne
           }// while, there are more distances in the line
         iterator++;
       }// while, there are more lines
-
     scanner.close();
-
   }// fileInput(String, String)
 
   @Override
   /**
-   * Using the algorithm, creates the schedule
+   * Using an algorithm, creates the schedule
    */
   public void algorithm()
   {
+    PrintWriter pen = new PrintWriter(System.out, true);
     //Initialize Variables
     int teamsSize = 9;
     int halfSize = 5;
@@ -472,6 +503,7 @@ public class ScheduleOne
     boolean check = true;
     int len;
     int len2;
+    int distance;
     shuffle(colleges);
     // For all the 18 days
     for (int day = 0; day < 18; day++)
@@ -480,13 +512,15 @@ public class ScheduleOne
         if (day == 9)
           home = false;
 
-        // System.out.println("Day {" + (day + 1) + "}");
+        System.out.println("Day {" + (day + 1) + "}");
 
         int teamIndex = day % teamsSize;
         collegeTwo = colleges.get(teamIndex);
         // For the pivot team
-        //System.out.println(collegeTwo.Initials + " vs " + first.Initials);
+        System.out.println(collegeTwo.Initials + " vs " + first.Initials);
 
+        distance = getDistance(first, collegeTwo);
+        System.out.println("Distance =" + distance);
         len = first.dates.size();
         for (checkDate = 0; checkDate < len && check != false; checkDate++)
           {
@@ -494,29 +528,54 @@ public class ScheduleOne
             len2 = collegeTwo.dates.size();
             for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
               {
-                if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate)
-                    && !collegeTwo.dates.get(checkOtherDate).used
-                    && !tmpDate.used)
+                if (distance > 270)
                   {
-                    check = false;
-                    break;
-                  }// if dates match;
+                    if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate)
+                        && !tmpDate.used
+                        && (tmpDate.day == 5 || tmpDate.day == 6))
+                      {
+                        check = false;
+                        break;
+                      }// if dates match;
+                  }// if distance between schools is greater than 270
+                else
+                  {
+                    if (hasTueWed(collegeTwo.dates))
+                      {
+                        if (collegeTwo.dates.get(checkOtherDate)
+                                            .equals(tmpDate)
+                            && !tmpDate.used
+                            && (tmpDate.day == 2 || tmpDate.day == 3))
+                          {
+                            check = false;
+                            break;
+                          }// if dates match;
+                      }// if there are Tue/Wed dates
+                    else
+                      {
+                        if (collegeTwo.dates.get(checkOtherDate)
+                                            .equals(tmpDate) && !tmpDate.used)
+                          {
+                            check = false;
+                            break;
+                          }// if dates match;
+                      }// else
+                  }// if distance between schools is less than 270
               } // for all the dates in the other school
           }// for all the dates in school 1
         checkDate--;
-        //System.out.println("CheckDate = " + checkDate + "CheckOtherDate = "
-        //               + checkOtherDate);
         if (check == false)
           {
             setMatch(first, collegeTwo, tmpDate, home);
-            collegeTwo.dates.get(checkOtherDate).isUsed();
-            first.dates.get(checkDate).isUsed();
+            collegeTwo.dates.remove(checkOtherDate);//.isUsed();
+            first.dates.remove(checkDate);//.isUsed();
             check = true;
           } //if, we found common dates
         else
           {
             //Dates do not Match
             System.out.println("Dates do not Match");
+            //printDates(pen);
           } //else, no common dates found
 
         //For the rest of the teams
@@ -524,12 +583,13 @@ public class ScheduleOne
           {
             int firstTeam = (day + idx) % teamsSize;
             int secondTeam = (day + teamsSize - idx) % teamsSize;
-            //System.out.println("firstTeam Index" + firstTeam + " " + "secondTeam Index" + secondTeam);
-            // System.out.println(colleges.get(firstTeam).Initials + " vs "
-            //                  + colleges.get(secondTeam).Initials);
+            System.out.println(colleges.get(firstTeam).Initials + " vs "
+                               + colleges.get(secondTeam).Initials);
 
             collegeOne = colleges.get(firstTeam);
             collegeTwo = colleges.get(secondTeam);
+            distance = getDistance(collegeOne, collegeTwo);
+            System.out.println("Distance =" + distance);
             len = collegeOne.dates.size();
             for (checkDate = 0; checkDate < len && check != false; checkDate++)
               {
@@ -537,26 +597,55 @@ public class ScheduleOne
                 len2 = collegeTwo.dates.size();
                 for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
                   {
-                    if (collegeTwo.dates.get(checkOtherDate).equals(tmpDate)
-                        && !collegeTwo.dates.get(checkOtherDate).used
-                        && !tmpDate.used)
+                    if (distance > 270)
                       {
-                        check = false;
-                        break;
-                      }// if dates match;
+                        if (collegeTwo.dates.get(checkOtherDate)
+                                            .equals(tmpDate)
+                            && !tmpDate.used
+                            && (tmpDate.day == 5 || tmpDate.date == 6))
+                          {
+                            check = false;
+                            break;
+                          }// if dates match;
+                      }// if distance between schools is greater than 270, find a weekend
+                    else
+                      {
+                        if (hasTueWed(collegeTwo.dates))
+                          {
+                            if (collegeTwo.dates.get(checkOtherDate)
+                                                .equals(tmpDate)
+                                && !tmpDate.used
+                                && (tmpDate.day == 2 || tmpDate.day == 3))
+                              {
+                                check = false;
+                                break;
+                              }// if dates match;
+                          }// if there are Tue/Wed Dates
+                        else
+                          {
+                            if (collegeTwo.dates.get(checkOtherDate)
+                                                .equals(tmpDate)
+                                && !tmpDate.used)
+                              {
+                                check = false;
+                                break;
+                              }// if dates match;
+                          }// else, no Tue/Wed Dates
+                      }// else find a weekday
                   } // for all the dates in the other school  
               }// for all the dates in school 1
             checkDate--;
             if (check == false)
               {
                 setMatch(collegeOne, collegeTwo, tmpDate, home);
-                collegeTwo.dates.get(checkOtherDate).isUsed();
-                collegeOne.dates.get(checkDate).isUsed();
+                collegeTwo.dates.remove(checkOtherDate);//.isUsed();
+                collegeOne.dates.remove(checkDate);//.isUsed();
                 check = true;
               } //if, we found common dates
             else
               {
-                // System.out.println("Dates do not Match-for Second Half");
+                System.out.println("Dates do not Match-for Second Half");
+                //printDates(pen);
               } //else, no common dates found
           }// for each round
       }// for, double round robin
@@ -600,6 +689,22 @@ public class ScheduleOne
     ...
     */
     School tmp;
+    PrintWriter writer = null;
+    try
+      {
+        writer = new PrintWriter(output, "UTF-8");
+      }
+    catch (FileNotFoundException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    catch (UnsupportedEncodingException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    
     PrintWriter pen = new PrintWriter(System.out, true);
 
     //File file = new File("example.txt");
@@ -610,9 +715,9 @@ public class ScheduleOne
         tmp = colleges.get(i);
         String home;
         //print header
-        pen.printf("%20s%40s%15s\n", tmp.name, "Date", "Location");
-        pen.println();
-        pen.println("Total Matches = " + tmp.history.size());
+        writer.printf("%20s%40s%15s\n", tmp.name, "Date", "Location");
+        writer.println();
+        writer.println("Total Matches = " + tmp.history.size());
         sort(tmp.history);
         for (History hist : tmp.history)
           {
@@ -620,15 +725,15 @@ public class ScheduleOne
               home = "home";
             else
               home = "away";
-            pen.printf("%20s%40s%15s", hist.opponent.name, hist.played, home);
-            pen.println();
+            writer.printf("%20s%40s%15s", hist.opponent.name, hist.played, home);
+            writer.println();
           }// all the items in History
-        pen.println();
-        pen.println();
-        pen.println();
-        pen.println();
+        writer.println();
+        writer.println();
+        writer.println();
+        writer.println();
       }// for every school
-    pen.close();
+    writer.close();
 
   }// output()
 
@@ -638,12 +743,10 @@ public class ScheduleOne
     ScheduleOne test = new ScheduleOne();
 
     test.schoolsInput("data.txt", "distance.txt");
-    //test.printDates(pen);
-    //test.algorithm();
-    test.generateSchedule();
+    test.printDates(pen);
+    test.algorithm();
+    //test.generateSchedule();
     //test.printInitials(pen);
-    test.output("Doesn't Matter");
-
+    test.output("Output.txt");
   }// main
-
 }// Class ScheduleOne

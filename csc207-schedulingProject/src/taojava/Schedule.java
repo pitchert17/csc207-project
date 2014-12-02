@@ -20,7 +20,7 @@ public interface Schedule
   /**
    * Uses the information extracted in fileInput to create a schedule
    */
-  public void algorithm();
+  public void generateSchedule();
 
   /**
    * Prints the schedule created by algorithm()

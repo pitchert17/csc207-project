@@ -46,7 +46,7 @@ public class Dates
   String[] monthNames = new String[] { "January", "February", "March", "April",
                                       "May", "June", "July", "August",
                                       "September", "October", "November",
-                                      "Decemeber" };
+                                      "December" };
   /**
    * Weights of months to be used to calculate the day from the date
    */
@@ -79,8 +79,9 @@ public class Dates
     this.date = _date;
     this.month = _month;
     this.year = _year;
+    int year = this.year - 2000;
     this.day =
-        ((((((((this.year / 4) + (this.year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
+        ((((((((year / 4) + (year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
   }// Dates(int, int, int ,int)
 
   /**
@@ -95,8 +96,9 @@ public class Dates
     this.date = _date;
     this.month = _month;
     this.year = _year;
+    int year = this.year - 2000;
     this.day =
-        ((((((((this.year / 4) + (this.year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
+        ((((((((year / 4) + (year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
   }// Dates(int, int, int ,int)
 
   // +--------+----------------------------------------------------------
@@ -180,7 +182,7 @@ public class Dates
   public String toString()
   {
     return dayNames[this.day] + " " + this.date + " "
-           + this.monthNames[this.month - 1] + " " + (this.year + 2000);
+           + this.monthNames[this.month - 1] + " " + this.year;
   }// toString()
 
   public boolean equals(Dates other)

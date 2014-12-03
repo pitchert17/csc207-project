@@ -83,6 +83,27 @@ public class Dates
     this.day =
         ((((((((year / 4) + (year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
   }// Dates(int, int, int ,int)
+  
+  
+  /**
+   * Constructs a new Dates Objects
+   * @param _date, the date of the month
+   * @param _month, the month
+   * @param _year, the last two digits of the month
+   * @param _priority, the priority
+   */
+  public Dates(int _date, int _month, int _year, int _priority, boolean used)
+  {
+    this.priority = _priority;
+    this.date = _date;
+    this.month = _month;
+    this.year = _year;
+    int year = this.year - 2000;
+    this.day =
+        ((((((((year / 4) + (year % 7)) + 6) % 7) + months[this.month - 1]) % 7) + this.date) % 7);
+    this.used = used;
+  }// Dates(int, int, int ,int)
+  
 
   /**
    * Constructs a new Dates Objects

@@ -27,7 +27,7 @@ public class ScheduleOne
    * An Array of School Objects to contain information
    * about all the colleges
    */
-  ArrayList<School> colleges = new ArrayList<School>();
+  static ArrayList<School> colleges = new ArrayList<School>();
 
   /**
    * The total number of matches played
@@ -182,12 +182,12 @@ public class ScheduleOne
    */
   public void generateSchedule()
   {
-
+    // Run it once
     boolean work = false;
     Helper.resetDates(colleges);
     Helper.algorithm(colleges);
-    /*
-    for (int i = 0; i < 60000; i++)
+
+    for (int i = 0; i < 1000; i++)
       {
         if (Helper.checkRestrictions(colleges))
           {
@@ -200,6 +200,10 @@ public class ScheduleOne
             Helper.algorithm(colleges);
           }// the algorithm fails the restrictions
       }
+    if (Helper.checkRestrictions(colleges))
+      {
+        work = true;
+      }// the algorithm fulfills the restrictions
     if (!work)
       {
         System.out.println("Doesn't Work");
@@ -208,7 +212,6 @@ public class ScheduleOne
       {
         System.out.println("It works!");
       }// it works
-      */
   }// generateSchedule
 
   @Override
@@ -241,10 +244,12 @@ public class ScheduleOne
         tmp = colleges.get(i);
         String home;
         //write header
-        writer.printf("%20s%40s%15s\n", tmp.name, "Date", "Location");
+        writer.printf("%20s%40s%15s%15s\n", tmp.name, "Date", "Location",
+                      "works");
         writer.println();
         writer.println("Total Matches = " + tmp.history.size());
         Helper.sort(tmp.history);
+        String spacer = "";
         for (History hist : tmp.history)
           {
             // Using boolean to write home or away
@@ -252,7 +257,12 @@ public class ScheduleOne
               home = "home";
             else
               home = "away";
-            writer.printf("%20s%40s%15s", hist.opponent.name, hist.played, home);
+            if (!hist.works)
+              spacer = "InCompatible";
+            else
+              spacer = "Compatible";
+            writer.printf("%20s%40s%15s%15s", hist.opponent.name, hist.played,
+                          home, spacer);
             writer.println();
           }// all the items in History
         writer.println();
@@ -267,9 +277,8 @@ public class ScheduleOne
   {
     ScheduleOne test = new ScheduleOne();
     test.schoolsInput("data.txt", "distance.txt");
-    //test.printDates(pen);
     test.generateSchedule();
-    //test.printInitials(pen);
+    //Helper.printDates(pen, colleges);
     test.output("Output.txt");
   }// main
 }// Class ScheduleOne

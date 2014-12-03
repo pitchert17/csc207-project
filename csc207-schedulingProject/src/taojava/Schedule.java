@@ -23,7 +23,7 @@ public interface Schedule
   public void generateSchedule();
 
   /**
-   * Prints the schedule created by algorithm()
+   * Writes the schedule created by algorithm() to a file
    * @param output, is the name of the output file with the schedule.
    */
   public void output(String output);

@@ -96,13 +96,13 @@ public class Helper
 
     shuffle(colleges);
     // For all the 18 days
-    for (int day = 0; day < 18; day++)
+    for (int day = 0; day < teamsSize * 2; day++)
       {
         // For the second round of double round robin
-        if (day == 9)
+        if (day == teamsSize)
           home = false;
 
-        System.out.println("Day {" + (day + 1) + "}");
+        // System.out.println("Day {" + (day + 1) + "}");
 
         int teamIndex = day % teamsSize;
         collegeTwo = colleges.get(teamIndex);
@@ -120,9 +120,10 @@ public class Helper
           }// for each round
       }// for, double round robin
     colleges.add(first);
+    // For Knox and Lawrence, change 22nd Nov to 10th Dec if possible
+    changeDates(colleges);
   }// algorithm()
-  
-  
+
   /**
   * Checks whether the two dates are equal
   * @param dateOne, the first Date
@@ -141,12 +142,16 @@ public class Helper
    * @param array, the ArrayList<Dates>
    * @return true, if there are Tue/Wed dates, else false
    */
-  public static boolean hasTueWed(ArrayList<Dates> array)
+  public static boolean hasTueWed(ArrayList<Dates> array,
+                                  ArrayList<Dates> arrayTwo)
   {
     for (Dates date : array)
       {
-        if (date.day == 2 || date.day == 3)
-          return true;
+        for (Dates dateTwo : arrayTwo)
+          {
+            if (date.equals(dateTwo) && (date.day == 2 || date.day == 3))
+              return true;
+          }// for, all the dates in the second array
       }// for, all the dates
     return false;
   }// hasTueWed()
@@ -156,12 +161,16 @@ public class Helper
    * @param array, the ArrayList<Dates>
    * @return true, if there are Tue/Wed dates, else false
    */
-  public static boolean hasFriSat(ArrayList<Dates> array)
+  public static boolean hasFriSat(ArrayList<Dates> array,
+                                  ArrayList<Dates> arrayTwo)
   {
     for (Dates date : array)
       {
-        if (date.day == 5 || date.day == 6)
-          return true;
+        for (Dates dateTwo : arrayTwo)
+          {
+            if (date.equals(dateTwo) && (date.day == 5 || date.day == 6))
+              return true;
+          }// for, all the dates in the second array
       }// for, all the dates
     return false;
   }// hasFriSat()
@@ -177,7 +186,7 @@ public class Helper
    *    Date we want to set the match for
    */
   public static void setMatch(School school1, School school2, Dates date,
-                       boolean location)
+                              boolean location)
   {
     History history1 = new History(school2, location, date);
     History history2 = new History(school1, !location, date);
@@ -192,7 +201,8 @@ public class Helper
    * @param collegeOne, first college
    * @param collegeTwo, second college
    */
-  public static void setMatches(School collegeOne, School collegeTwo, boolean home)
+  public static void setMatches(School collegeOne, School collegeTwo,
+                                boolean home)
   {
     // Declarations
     PrintWriter pen = new PrintWriter(System.out, true);
@@ -200,11 +210,11 @@ public class Helper
     int checkOtherDate = 0;
     Dates tmpDate = null;
     boolean check = true;
-    pen.println(collegeOne.Initials + " vs " + collegeTwo.Initials);
+    //pen.println(collegeOne.Initials + " vs " + collegeTwo.Initials);
 
     // Get the Distance between the two colleges
     int distance = getDistance(collegeOne, collegeTwo);
-    pen.println("Distance =" + distance);
+    //pen.println("Distance =" + distance);
 
     // Get the lengths of the two Dates arrays
     int len = collegeOne.dates.size();
@@ -214,38 +224,11 @@ public class Helper
         tmpDate = collegeOne.dates.get(checkDate);
         for (checkOtherDate = 0; checkOtherDate < len2; checkOtherDate++)
           {
-            if (distance > 270 && hasFriSat(collegeTwo.dates)
-                && hasFriSat(collegeOne.dates))
+            if (checkDatesEqual(collegeTwo.dates.get(checkOtherDate), tmpDate))
               {
-                if (checkDatesEqual(collegeTwo.dates.get(checkOtherDate),
-                                    tmpDate)
-                    && (tmpDate.day == 5 || tmpDate.day == 6))
-                  {
-                    check = false;
-                    break;
-                  }// if dates match;
-              }// if, distance > 270, and there are weekend dates
-            else if (distance < 270 && hasTueWed(collegeTwo.dates)
-                     && hasTueWed(collegeOne.dates))
-              {
-
-                if (checkDatesEqual(collegeTwo.dates.get(checkOtherDate),
-                                    tmpDate)
-                    && (tmpDate.day == 2 || tmpDate.day == 3))
-                  {
-                    check = false;
-                    break;
-                  }// if dates match;
-              }// else if, distance is < 270, and there are weekdays 
-            else
-              {
-                if (checkDatesEqual(collegeTwo.dates.get(checkOtherDate),
-                                    tmpDate))
-                  {
-                    check = false;
-                    break;
-                  }// if dates match;
-              }// else, any date works
+                check = false;
+                break;
+              }// if, dates match;
           } // for all the dates in the other school  
       }// for all the dates in school 1
     checkDate--;
@@ -258,7 +241,8 @@ public class Helper
       } //if, we found common dates, set the match and change the status of the date
     else
       {
-        pen.println("No Common Dates Found");
+        //pen.println("No Common Dates Found");
+        // No match-up found
       } //else, no common dates found
   }// setMatches(School, School)
 
@@ -296,9 +280,78 @@ public class Helper
     return college.distances[i].distance;
   }// getDistance(School, School)
 
+  /**
+   * For Knox and Lawrence, change 22nd Nov if possible to 10th Dec
+   * @param colleges, ArrayList of all the schools
+   */
+  public static void changeDates(ArrayList<School> colleges)
+  {
+    Dates tmp = new Dates(22, 11, 2016, 1);
+    for (School college : colleges)
+      {
+        if (college.Initials.equals("KC") || college.Initials.equals("LU"))
+          {
+            for (History hist : college.history)
+              {
+                if (hist.played.date == 22
+                    && hist.played.month == 11
+                    && (!hist.opponent.Initials.equals("LFC")
+                        || !hist.opponent.Initials.equals("MC") || !hist.opponent.Initials.equals("BC")))
+                  {
+                    hist.played.date = 10;
+                    hist.played.month = 12;
+                  }// if, it is playing some team on the 22nd other than Lake Forest
+                // Monmouth or Beloit
+              }//for, all the history objects
+          }// if Knox or Lawrence
+      }//for, all the colleges 
+  }// changeDates(ArrayList<School> colleges)
+
   // +-------------------+-------------------------------------------------
   // |Restriction Methods|
   // +-------------------+
+
+  /**
+   * Check if no schools are playing on restricted dates 
+   * @param colleges, for all the schools
+   * @return true, if no school is playing on the restricted dates, false otherwise
+   */
+  public static boolean checkRestrictedDates(ArrayList<School> colleges)
+  {
+    boolean works = true;
+    for (School college : colleges)
+      {
+        if (college.Initials.equals("LFC") || college.Initials.equals("MC")
+            || college.Initials.equals("BC"))
+          {
+            for (History hist : college.history)
+              {
+                // If playing on 10th Dec, finals week for them
+                if (hist.played.month == 12 && hist.played.day == 10)
+                  {
+                    System.out.println("WTFFF10thDec");
+                    hist.works = false;
+                    works = false;
+                  }// if,
+              }// for all the history objects
+          }// if, Lake Forest, Monmouth or Beloit
+        else if (college.Initials.equals("KC") || college.Initials.equals("LU"))
+          {
+            for (History hist : college.history)
+              {
+                // If playing on 22nd Nov, finals week for them
+                if (hist.played.month == 11 && hist.played.date == 22)
+                  {
+                    System.out.println("WTFFF22ndNov");
+                    System.out.println(hist.played);
+                    hist.works = false;
+                    works = false;
+                  }// if,
+              }// for all the history objects
+          }// if, Knox or Lawrence
+      }// for all the colleges
+    return works;
+  }// checkMustPlay(ArrayList<School)
 
   /**
    * Check for each school if the distance restrictions are fulfilled.
@@ -307,28 +360,22 @@ public class Helper
    */
   public static boolean checkDistance(School college)
   {
+    boolean works = true;
     for (History hist : college.history)
       {
         Dates date = hist.played;
         School opponent = hist.opponent;
-        String initials = opponent.Initials;
-        int len = college.distances.length;
-        int iterator = 0;
         int day = date.day;
         if (day == 2 || day == 3)
           {
-            while (iterator < len)
+            if (getDistance(college, opponent) > 270)
               {
-                // find the correct Location object
-                if (college.distances[iterator].schoolInitials.equals(initials))
-                  break;
-                iterator++;
-              }// while, iterator is within the length of the array
-            // Check if the distance works
-            return false;
-          }// if it is a Tuesday or a Wednesday
+                hist.works = false;
+                works = false;
+              }// if, traveling more than 270 miles
+          }// if it is a weekday, check the distance
       }// for all the history objects
-    return true;
+    return works;
   }// checkDistance
 
   /**
@@ -343,80 +390,53 @@ public class Helper
   public static boolean checkBacktoBack(School school)
   {
     //Declarations
+    boolean works = true;
     int iter = 0;
     boolean location;
     //Declarations
     sort(school.history);
     History tmp;
     int len = school.history.size();
-
+    sort(school.history);
     for (iter = 0; iter < len; iter++)
       {
         tmp = school.history.get(iter);
         if (tmp.played.day == 5)
           {
             location = tmp.home;
-            if (school.history.get(iter + 1).home != location)
-              return false;
+            if (school.history.get(iter + 1).home != location
+                || (getDistance(school.history.get(iter).opponent,
+                                school.history.get(iter + 1).opponent) > 180))
+              {
+                school.history.get(iter).works = false;
+                school.history.get(iter + 1).works = false;
+                works = false;
+              }// if location and distance are not compatible
           }// if it is a friday
       }// for all the history objects
 
-    return true;
-    /*
-    //Declarations
-    int iter = 0;
-    boolean location = false;
-    boolean result = false;
-    int secondCheck = 0;
-    //Declarations
-
-    for (History hist : school.history)
-      {
-        if (hist.played.day == 5)
-          {
-            iter++;
-            location = hist.home;
-          }//If the match is a friday
-        if (hist.played.day == 6) //if we find saturday
-          {
-            if (hist.home == location && iter != 0)
-              {
-                iter = 0;
-                secondCheck++;
-                location = !location;
-                result = true;
-              } //if the Saturday follows a Friday and is at the same location
-            else
-              //else, the saturday did not pass the test
-              return false;
-          }//If the match is a saturday
-      } //for each history object in the school's history ArrayList
-    if (secondCheck == 2)
-      {
-        return result;
-      } //if there were two back-to-backs that were checked
-    return false;
-    */
+    return works;
   } // checkBacktoBack(School school)
 
-  
   /**
    * Uses the basic schedule and checks whether all the
    * restrictions are fulfilled.
    */
   public static boolean checkRestrictions(ArrayList<School> colleges)
   {
-
+    boolean works = true;
+    if (!checkRestrictedDates(colleges))
+      works = false;
     for (School college : colleges)
       {
-        if (!checkDistance(college))//|| !checkBacktoBack(college))
+        if (!checkBacktoBack(college) || !checkDistance(college))
           {
-            return false;
-          }
-      }// For all the colleges, check the distance restrictions on weekdays
-    return true;
+            works = false;
+          }// if,
+      }// For all the colleges, check the restrictions
+    return works;
   }// setRestrictions()
-  
+
   // +--------------+------------------------------------------------------
   // |Other Methods |
   // +--------------+

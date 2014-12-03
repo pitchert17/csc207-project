@@ -30,6 +30,10 @@ public class History
    */
   Dates played;
 
+  /**
+   * A boolean to determine if the match-up works
+   */
+  boolean works;
   // +--------------+----------------------------------------------------
   // | Constructors |
   // +--------------+
@@ -45,6 +49,7 @@ public class History
     this.opponent = college;
     this.home = location;
     this.played = time;
+    works = true;
   }// History(School, boolean, Dates)
 
   // +--------+----------------------------------------------------------

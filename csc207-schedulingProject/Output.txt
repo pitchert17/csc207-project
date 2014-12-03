@@ -1,197 +1,245 @@
-     Cornell College                                    Date       Location
+     Cornell College                                    Date       Location          works
 
-Total Matches = 10
-       Ripon College                Tuesday 22 November 2016           home
- St. Norbert College                  Friday 2 December 2016           away
-    Lawrence College               Wednesday 7 December 2016           home
-    Illinois College                Wednesday 4 January 2017           home
-      Beloit College               Wednesday 18 January 2017           away
- St. Norbert College                Saturday 21 January 2017           home
- Lake Forest College                 Tuesday 24 January 2017           away
-        Knox College                 Tuesday 31 January 2017           away
-    Grinnell College               Wednesday 8 February 2017           away
-    Monmouth College                Tuesday 14 February 2017           away
-
-
-
-
-    Illinois College                                    Date       Location
-
-Total Matches = 14
-        Knox College                Tuesday 22 November 2016           home
- Lake Forest College               Wednesday 7 December 2016           home
-     Cornell College                Wednesday 4 January 2017           away
- St. Norbert College                 Saturday 7 January 2017           home
-       Ripon College                  Friday 13 January 2017           home
-    Monmouth College               Wednesday 18 January 2017           home
-    Lawrence College                Saturday 21 January 2017           home
-    Grinnell College                 Tuesday 24 January 2017           away
-    Grinnell College                Saturday 28 January 2017           home
- St. Norbert College                Saturday 4 February 2017           away
-    Monmouth College               Wednesday 8 February 2017           away
-       Ripon College               Saturday 11 February 2017           away
-      Beloit College                Tuesday 14 February 2017           home
-    Lawrence College               Saturday 18 February 2017           away
+Total Matches = 18
+ St. Norbert College                Tuesday 22 November 2016           away     Compatible
+    Monmouth College                  Friday 2 December 2016           away     Compatible
+        Knox College                Saturday 3 December 2016           away     Compatible
+ Lake Forest College               Wednesday 7 December 2016           away     Compatible
+    Lawrence College                Wednesday 4 January 2017           home     Compatible
+      Beloit College                 Saturday 7 January 2017           home     Compatible
+    Illinois College                  Friday 13 January 2017           home   InCompatible
+    Grinnell College                Saturday 14 January 2017           home   InCompatible
+       Ripon College               Wednesday 18 January 2017           home     Compatible
+ St. Norbert College                Saturday 21 January 2017           home     Compatible
+    Monmouth College                 Tuesday 24 January 2017           home     Compatible
+        Knox College                Saturday 28 January 2017           home     Compatible
+ Lake Forest College                 Tuesday 31 January 2017           home     Compatible
+    Lawrence College                Saturday 4 February 2017           away     Compatible
+      Beloit College               Wednesday 8 February 2017           away     Compatible
+    Illinois College               Saturday 11 February 2017           away     Compatible
+    Grinnell College                Tuesday 14 February 2017           away     Compatible
+       Ripon College               Saturday 18 February 2017           away     Compatible
 
 
 
 
-    Grinnell College                                    Date       Location
+ Lake Forest College                                    Date       Location          works
 
-Total Matches = 15
-       Ripon College                Saturday 3 December 2016           away
-    Monmouth College               Wednesday 7 December 2016           home
-      Beloit College                Wednesday 4 January 2017           away
-    Lawrence College                 Saturday 7 January 2017           away
- Lake Forest College                  Friday 13 January 2017           home
- St. Norbert College                Saturday 14 January 2017           away
-       Ripon College                Saturday 21 January 2017           home
-    Illinois College                 Tuesday 24 January 2017           home
-    Illinois College                Saturday 28 January 2017           away
-    Monmouth College                 Tuesday 31 January 2017           away
-    Lawrence College                Saturday 4 February 2017           home
-     Cornell College               Wednesday 8 February 2017           home
- Lake Forest College               Saturday 11 February 2017           away
-        Knox College                Tuesday 14 February 2017           away
- St. Norbert College               Saturday 18 February 2017           home
-
-
-
-
-    Lawrence College                                    Date       Location
-
-Total Matches = 15
- St. Norbert College                Tuesday 22 November 2016           home
-        Knox College                Saturday 3 December 2016           away
-     Cornell College               Wednesday 7 December 2016           away
-       Ripon College                Wednesday 4 January 2017           home
-    Grinnell College                 Saturday 7 January 2017           home
-    Monmouth College                Saturday 14 January 2017           home
- St. Norbert College               Wednesday 18 January 2017           away
-    Illinois College                Saturday 21 January 2017           away
-       Ripon College                 Tuesday 24 January 2017           away
-        Knox College                Saturday 28 January 2017           home
-    Grinnell College                Saturday 4 February 2017           away
-      Beloit College               Wednesday 8 February 2017           home
-    Monmouth College               Saturday 11 February 2017           away
- Lake Forest College                Tuesday 14 February 2017           home
-    Illinois College               Saturday 18 February 2017           home
+Total Matches = 18
+      Beloit College                Tuesday 22 November 2016           away     Compatible
+    Illinois College                  Friday 2 December 2016           away   InCompatible
+    Grinnell College                Saturday 3 December 2016           away   InCompatible
+     Cornell College               Wednesday 7 December 2016           home     Compatible
+ St. Norbert College                Wednesday 4 January 2017           home     Compatible
+    Monmouth College                 Saturday 7 January 2017           home     Compatible
+        Knox College                  Friday 13 January 2017           home   InCompatible
+       Ripon College                Saturday 14 January 2017           home   InCompatible
+    Lawrence College               Wednesday 18 January 2017           away     Compatible
+      Beloit College                Saturday 21 January 2017           home     Compatible
+    Illinois College                 Tuesday 24 January 2017           home     Compatible
+    Grinnell College                Saturday 28 January 2017           home     Compatible
+     Cornell College                 Tuesday 31 January 2017           away     Compatible
+ St. Norbert College                Saturday 4 February 2017           away     Compatible
+    Monmouth College               Wednesday 8 February 2017           away     Compatible
+        Knox College               Saturday 11 February 2017           away     Compatible
+       Ripon College                Tuesday 14 February 2017           away     Compatible
+    Lawrence College               Saturday 18 February 2017           home     Compatible
 
 
 
 
-        Knox College                                    Date       Location
+    Grinnell College                                    Date       Location          works
 
-Total Matches = 12
-    Illinois College                Tuesday 22 November 2016           away
-    Lawrence College                Saturday 3 December 2016           home
-      Beloit College               Wednesday 7 December 2016           away
- St. Norbert College                  Friday 13 January 2017           away
-       Ripon College                Saturday 14 January 2017           away
- Lake Forest College               Wednesday 18 January 2017           away
-    Monmouth College                 Tuesday 24 January 2017           away
-    Lawrence College                Saturday 28 January 2017           away
-     Cornell College                 Tuesday 31 January 2017           home
- St. Norbert College               Saturday 11 February 2017           home
-    Grinnell College                Tuesday 14 February 2017           home
-       Ripon College               Saturday 18 February 2017           home
-
-
-
-
-       Ripon College                                    Date       Location
-
-Total Matches = 15
-     Cornell College                Tuesday 22 November 2016           away
-    Grinnell College                Saturday 3 December 2016           home
- St. Norbert College               Wednesday 7 December 2016           home
-    Lawrence College                Wednesday 4 January 2017           away
-    Monmouth College                 Saturday 7 January 2017           home
-    Illinois College                  Friday 13 January 2017           away
-        Knox College                Saturday 14 January 2017           home
-    Grinnell College                Saturday 21 January 2017           away
-    Lawrence College                 Tuesday 24 January 2017           home
-      Beloit College                 Tuesday 31 January 2017           home
-    Monmouth College                Saturday 4 February 2017           away
- Lake Forest College               Wednesday 8 February 2017           home
-    Illinois College               Saturday 11 February 2017           home
- St. Norbert College                Tuesday 14 February 2017           away
-        Knox College               Saturday 18 February 2017           away
+Total Matches = 18
+    Monmouth College                Tuesday 22 November 2016           away     Compatible
+        Knox College                  Friday 2 December 2016           away   InCompatible
+ Lake Forest College                Saturday 3 December 2016           home   InCompatible
+    Lawrence College               Wednesday 7 December 2016           home     Compatible
+      Beloit College                Wednesday 4 January 2017           home     Compatible
+    Illinois College                 Saturday 7 January 2017           home     Compatible
+       Ripon College                  Friday 13 January 2017           home   InCompatible
+     Cornell College                Saturday 14 January 2017           away   InCompatible
+ St. Norbert College               Wednesday 18 January 2017           away     Compatible
+    Monmouth College                Saturday 21 January 2017           home     Compatible
+        Knox College                 Tuesday 24 January 2017           home     Compatible
+ Lake Forest College                Saturday 28 January 2017           away     Compatible
+    Lawrence College                 Tuesday 31 January 2017           away     Compatible
+      Beloit College                Saturday 4 February 2017           away     Compatible
+    Illinois College               Wednesday 8 February 2017           away     Compatible
+       Ripon College               Saturday 11 February 2017           away     Compatible
+     Cornell College                Tuesday 14 February 2017           home     Compatible
+ St. Norbert College               Saturday 18 February 2017           home     Compatible
 
 
 
 
- Lake Forest College                                    Date       Location
+        Knox College                                    Date       Location          works
 
-Total Matches = 10
-      Beloit College                Tuesday 22 November 2016           away
-    Illinois College               Wednesday 7 December 2016           away
-    Monmouth College                Wednesday 4 January 2017           away
-    Grinnell College                  Friday 13 January 2017           away
-        Knox College               Wednesday 18 January 2017           home
-     Cornell College                 Tuesday 24 January 2017           home
- St. Norbert College                 Tuesday 31 January 2017           home
-       Ripon College               Wednesday 8 February 2017           away
-    Grinnell College               Saturday 11 February 2017           home
-    Lawrence College                Tuesday 14 February 2017           away
-
-
-
-
- St. Norbert College                                    Date       Location
-
-Total Matches = 16
-    Lawrence College                Tuesday 22 November 2016           away
-     Cornell College                  Friday 2 December 2016           home
-    Monmouth College                Saturday 3 December 2016           home
-       Ripon College               Wednesday 7 December 2016           away
-    Illinois College                 Saturday 7 January 2017           away
-        Knox College                  Friday 13 January 2017           home
-    Grinnell College                Saturday 14 January 2017           home
-    Lawrence College               Wednesday 18 January 2017           home
-     Cornell College                Saturday 21 January 2017           away
-      Beloit College                 Tuesday 24 January 2017           home
-    Monmouth College                Saturday 28 January 2017           away
- Lake Forest College                 Tuesday 31 January 2017           away
-    Illinois College                Saturday 4 February 2017           home
-        Knox College               Saturday 11 February 2017           away
-       Ripon College                Tuesday 14 February 2017           home
-    Grinnell College               Saturday 18 February 2017           away
+Total Matches = 17
+    Grinnell College                  Friday 2 December 2016           home     Compatible
+     Cornell College                Saturday 3 December 2016           home     Compatible
+ St. Norbert College               Wednesday 7 December 2016           home   InCompatible
+    Monmouth College                Wednesday 4 January 2017           home     Compatible
+       Ripon College                 Saturday 7 January 2017           home     Compatible
+ Lake Forest College                  Friday 13 January 2017           away     Compatible
+    Lawrence College                Saturday 14 January 2017           away     Compatible
+      Beloit College               Wednesday 18 January 2017           away     Compatible
+    Illinois College                Saturday 21 January 2017           home     Compatible
+    Grinnell College                 Tuesday 24 January 2017           away     Compatible
+     Cornell College                Saturday 28 January 2017           away     Compatible
+ St. Norbert College                 Tuesday 31 January 2017           away   InCompatible
+    Monmouth College                Saturday 4 February 2017           away     Compatible
+       Ripon College               Wednesday 8 February 2017           away   InCompatible
+ Lake Forest College               Saturday 11 February 2017           home     Compatible
+    Lawrence College                Tuesday 14 February 2017           home   InCompatible
+      Beloit College               Saturday 18 February 2017           home     Compatible
 
 
 
 
-      Beloit College                                    Date       Location
+    Illinois College                                    Date       Location          works
 
-Total Matches = 8
- Lake Forest College                Tuesday 22 November 2016           home
-        Knox College               Wednesday 7 December 2016           home
-    Grinnell College                Wednesday 4 January 2017           home
-     Cornell College               Wednesday 18 January 2017           home
- St. Norbert College                 Tuesday 24 January 2017           away
-       Ripon College                 Tuesday 31 January 2017           away
-    Lawrence College               Wednesday 8 February 2017           away
-    Illinois College                Tuesday 14 February 2017           away
+Total Matches = 17
+ Lake Forest College                  Friday 2 December 2016           home     Compatible
+    Lawrence College                Saturday 3 December 2016           home     Compatible
+      Beloit College               Wednesday 7 December 2016           home     Compatible
+       Ripon College                Wednesday 4 January 2017           home     Compatible
+    Grinnell College                 Saturday 7 January 2017           away     Compatible
+     Cornell College                  Friday 13 January 2017           away   InCompatible
+ St. Norbert College                Saturday 14 January 2017           away   InCompatible
+    Monmouth College               Wednesday 18 January 2017           away     Compatible
+        Knox College                Saturday 21 January 2017           away     Compatible
+ Lake Forest College                 Tuesday 24 January 2017           away     Compatible
+    Lawrence College                Saturday 28 January 2017           away     Compatible
+      Beloit College                 Tuesday 31 January 2017           away     Compatible
+       Ripon College                Saturday 4 February 2017           away     Compatible
+    Grinnell College               Wednesday 8 February 2017           home     Compatible
+     Cornell College               Saturday 11 February 2017           home     Compatible
+ St. Norbert College                Tuesday 14 February 2017           home     Compatible
+    Monmouth College               Saturday 18 February 2017           home     Compatible
 
 
 
 
-    Monmouth College                                    Date       Location
+    Monmouth College                                    Date       Location          works
 
-Total Matches = 13
- St. Norbert College                Saturday 3 December 2016           away
-    Grinnell College               Wednesday 7 December 2016           away
- Lake Forest College                Wednesday 4 January 2017           home
-       Ripon College                 Saturday 7 January 2017           away
-    Lawrence College                Saturday 14 January 2017           away
-    Illinois College               Wednesday 18 January 2017           away
-        Knox College                 Tuesday 24 January 2017           home
- St. Norbert College                Saturday 28 January 2017           home
-    Grinnell College                 Tuesday 31 January 2017           home
-       Ripon College                Saturday 4 February 2017           home
-    Illinois College               Wednesday 8 February 2017           home
-    Lawrence College               Saturday 11 February 2017           home
-     Cornell College                Tuesday 14 February 2017           home
+Total Matches = 18
+    Grinnell College                Tuesday 22 November 2016           home     Compatible
+     Cornell College                  Friday 2 December 2016           home   InCompatible
+ St. Norbert College                Saturday 3 December 2016           home   InCompatible
+       Ripon College               Wednesday 7 December 2016           home     Compatible
+        Knox College                Wednesday 4 January 2017           away     Compatible
+ Lake Forest College                 Saturday 7 January 2017           away     Compatible
+    Lawrence College                  Friday 13 January 2017           away     Compatible
+      Beloit College                Saturday 14 January 2017           away     Compatible
+    Illinois College               Wednesday 18 January 2017           home     Compatible
+    Grinnell College                Saturday 21 January 2017           away     Compatible
+     Cornell College                 Tuesday 24 January 2017           away     Compatible
+ St. Norbert College                Saturday 28 January 2017           away     Compatible
+       Ripon College                 Tuesday 31 January 2017           away     Compatible
+        Knox College                Saturday 4 February 2017           home     Compatible
+ Lake Forest College               Wednesday 8 February 2017           home     Compatible
+    Lawrence College               Saturday 11 February 2017           home     Compatible
+      Beloit College                Tuesday 14 February 2017           home     Compatible
+    Illinois College               Saturday 18 February 2017           away     Compatible
+
+
+
+
+      Beloit College                                    Date       Location          works
+
+Total Matches = 18
+ Lake Forest College                Tuesday 22 November 2016           home     Compatible
+    Lawrence College                  Friday 2 December 2016           home     Compatible
+       Ripon College                Saturday 3 December 2016           home     Compatible
+    Illinois College               Wednesday 7 December 2016           away     Compatible
+    Grinnell College                Wednesday 4 January 2017           away     Compatible
+     Cornell College                 Saturday 7 January 2017           away     Compatible
+ St. Norbert College                  Friday 13 January 2017           away   InCompatible
+    Monmouth College                Saturday 14 January 2017           home   InCompatible
+        Knox College               Wednesday 18 January 2017           home     Compatible
+ Lake Forest College                Saturday 21 January 2017           away     Compatible
+    Lawrence College                 Tuesday 24 January 2017           away     Compatible
+       Ripon College                Saturday 28 January 2017           away     Compatible
+    Illinois College                 Tuesday 31 January 2017           home     Compatible
+    Grinnell College                Saturday 4 February 2017           home     Compatible
+     Cornell College               Wednesday 8 February 2017           home     Compatible
+ St. Norbert College               Saturday 11 February 2017           home     Compatible
+    Monmouth College                Tuesday 14 February 2017           away     Compatible
+        Knox College               Saturday 18 February 2017           away     Compatible
+
+
+
+
+ St. Norbert College                                    Date       Location          works
+
+Total Matches = 18
+     Cornell College                Tuesday 22 November 2016           home     Compatible
+       Ripon College                  Friday 2 December 2016           home   InCompatible
+    Monmouth College                Saturday 3 December 2016           away   InCompatible
+        Knox College               Wednesday 7 December 2016           away     Compatible
+ Lake Forest College                Wednesday 4 January 2017           away     Compatible
+    Lawrence College                 Saturday 7 January 2017           away     Compatible
+      Beloit College                  Friday 13 January 2017           home   InCompatible
+    Illinois College                Saturday 14 January 2017           home   InCompatible
+    Grinnell College               Wednesday 18 January 2017           home     Compatible
+     Cornell College                Saturday 21 January 2017           away     Compatible
+       Ripon College                 Tuesday 24 January 2017           away     Compatible
+    Monmouth College                Saturday 28 January 2017           home     Compatible
+        Knox College                 Tuesday 31 January 2017           home     Compatible
+ Lake Forest College                Saturday 4 February 2017           home     Compatible
+    Lawrence College               Wednesday 8 February 2017           home     Compatible
+      Beloit College               Saturday 11 February 2017           away     Compatible
+    Illinois College                Tuesday 14 February 2017           away     Compatible
+    Grinnell College               Saturday 18 February 2017           away     Compatible
+
+
+
+
+    Lawrence College                                    Date       Location          works
+
+Total Matches = 17
+      Beloit College                  Friday 2 December 2016           away   InCompatible
+    Illinois College                Saturday 3 December 2016           away   InCompatible
+    Grinnell College               Wednesday 7 December 2016           away     Compatible
+     Cornell College                Wednesday 4 January 2017           away     Compatible
+ St. Norbert College                 Saturday 7 January 2017           home     Compatible
+    Monmouth College                  Friday 13 January 2017           home     Compatible
+        Knox College                Saturday 14 January 2017           home     Compatible
+ Lake Forest College               Wednesday 18 January 2017           home     Compatible
+       Ripon College                Saturday 21 January 2017           away     Compatible
+      Beloit College                 Tuesday 24 January 2017           home     Compatible
+    Illinois College                Saturday 28 January 2017           home     Compatible
+    Grinnell College                 Tuesday 31 January 2017           home     Compatible
+     Cornell College                Saturday 4 February 2017           home     Compatible
+ St. Norbert College               Wednesday 8 February 2017           away     Compatible
+    Monmouth College               Saturday 11 February 2017           away     Compatible
+        Knox College                Tuesday 14 February 2017           away     Compatible
+ Lake Forest College               Saturday 18 February 2017           away     Compatible
+
+
+
+
+       Ripon College                                    Date       Location          works
+
+Total Matches = 17
+ St. Norbert College                  Friday 2 December 2016           away   InCompatible
+      Beloit College                Saturday 3 December 2016           away   InCompatible
+    Monmouth College               Wednesday 7 December 2016           away     Compatible
+    Illinois College                Wednesday 4 January 2017           away     Compatible
+        Knox College                 Saturday 7 January 2017           away     Compatible
+    Grinnell College                  Friday 13 January 2017           away   InCompatible
+ Lake Forest College                Saturday 14 January 2017           away   InCompatible
+     Cornell College               Wednesday 18 January 2017           away     Compatible
+    Lawrence College                Saturday 21 January 2017           home     Compatible
+ St. Norbert College                 Tuesday 24 January 2017           home     Compatible
+      Beloit College                Saturday 28 January 2017           home     Compatible
+    Monmouth College                 Tuesday 31 January 2017           home     Compatible
+    Illinois College                Saturday 4 February 2017           home     Compatible
+        Knox College               Wednesday 8 February 2017           home     Compatible
+    Grinnell College               Saturday 11 February 2017           home     Compatible
+ Lake Forest College                Tuesday 14 February 2017           home     Compatible
+     Cornell College               Saturday 18 February 2017           home     Compatible
 
 
 
